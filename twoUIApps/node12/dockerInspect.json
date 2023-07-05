@@ -1,0 +1,236 @@
+[
+    {
+        "Id": "97fa23f29dccd75353c56c3ce91fc2233f3e95f7cd7cad07a585ba50a17ed0f6",
+        "Created": "2023-07-05T04:15:06.462603699Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "node",
+            "index.js"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 5500,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2023-07-05T04:15:06.779362002Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:190064350942f1662872c6c5ec4ae98060ce5bd4babdcc42758d54829895ea03",
+        "ResolvConfPath": "/var/lib/docker/containers/97fa23f29dccd75353c56c3ce91fc2233f3e95f7cd7cad07a585ba50a17ed0f6/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/97fa23f29dccd75353c56c3ce91fc2233f3e95f7cd7cad07a585ba50a17ed0f6/hostname",
+        "HostsPath": "/var/lib/docker/containers/97fa23f29dccd75353c56c3ce91fc2233f3e95f7cd7cad07a585ba50a17ed0f6/hosts",
+        "LogPath": "/var/lib/docker/containers/97fa23f29dccd75353c56c3ce91fc2233f3e95f7cd7cad07a585ba50a17ed0f6/97fa23f29dccd75353c56c3ce91fc2233f3e95f7cd7cad07a585ba50a17ed0f6-json.log",
+        "Name": "/twouiapps-node23-1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": [
+            "0212d1ba76b9c8662e5da420fd70e463299729691b8b20cff514acc0c06bb7c6"
+        ],
+        "HostConfig": {
+            "Binds": [],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "twouiapps_default",
+            "PortBindings": {
+                "42060/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "42060"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "on-failure",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/e81de511239da8ec11937063cc6db91e720fc91302c84135c3589f601c1b3e27-init/diff:/var/lib/docker/overlay2/i2vs4qd4izbrcrvjc9ainoc6b/diff:/var/lib/docker/overlay2/xdvy3uu71bsoa6e27fzt3kywr/diff:/var/lib/docker/overlay2/55nkab1600bmntuyr5i64xqdm/diff:/var/lib/docker/overlay2/nhkz7z8tqbpj48c3v8h3i8wvh/diff:/var/lib/docker/overlay2/w80lixk2ofqnulxxpntjvspl8/diff:/var/lib/docker/overlay2/5a0a3692cc1704739086649a9d6001e5014ce8d1d514bf8a2f98bd5c3f861aa7/diff:/var/lib/docker/overlay2/71f1551824abffa5a602920e2b1d545f891259b30bb8253c2b08a416c8639167/diff:/var/lib/docker/overlay2/bb9ef43101e117c984e8af85019b461ffd2139aafaa454a7681b5613b5878c20/diff:/var/lib/docker/overlay2/ed1a17adec22991993e495b3b10f5da57740e4e4c581c213662f7a67e09faee9/diff:/var/lib/docker/overlay2/457186149c2367c094ff82486a929aef189df60f930123b6ff3b0a8be8426d68/diff:/var/lib/docker/overlay2/aef51beab2cd05cca199d1132d2d6ad0aec85a28d23f4528b46cddc37d258314/diff:/var/lib/docker/overlay2/06ba6947da7447418d14554ae2868431223204515e9127485ebb80c80111fabd/diff:/var/lib/docker/overlay2/95d54d121bcc6f3b9fbff924c5a38fe3aa8613efa7b4d992b19c4748a4bcf6f6/diff",
+                "MergedDir": "/var/lib/docker/overlay2/e81de511239da8ec11937063cc6db91e720fc91302c84135c3589f601c1b3e27/merged",
+                "UpperDir": "/var/lib/docker/overlay2/e81de511239da8ec11937063cc6db91e720fc91302c84135c3589f601c1b3e27/diff",
+                "WorkDir": "/var/lib/docker/overlay2/e81de511239da8ec11937063cc6db91e720fc91302c84135c3589f601c1b3e27/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "97fa23f29dcc",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "42060/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=16.20.1",
+                "YARN_VERSION=1.22.19"
+            ],
+            "Cmd": [
+                "node",
+                "index.js"
+            ],
+            "Image": "twouiapps_node23",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "2926e1239807d9b841eee8f904cc1559d9ab9ae769d7ae9aefe261b910f30998",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "postgres:service_started",
+                "com.docker.compose.image": "sha256:190064350942f1662872c6c5ec4ae98060ce5bd4babdcc42758d54829895ea03",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "twouiapps",
+                "com.docker.compose.project.config_files": "/home/gsakshi/Desktop/docker23/twoUIApps/docker-compose.yml",
+                "com.docker.compose.project.working_dir": "/home/gsakshi/Desktop/docker23/twoUIApps",
+                "com.docker.compose.service": "node23",
+                "com.docker.compose.version": "2.3.3"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "79b1b9d001425fca8c5152fa0571e80d944545553ded4d1e4c93bb440c1a68d8",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "42060/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "42060"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/79b1b9d00142",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "twouiapps_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "twouiapps-node23-1",
+                        "node23",
+                        "97fa23f29dcc"
+                    ],
+                    "NetworkID": "6343f38b4692aab3e365fa86d3aa5d14ee3fc3b5e4a8777e8c0f4059cbccb74c",
+                    "EndpointID": "7471fd08dd63837b66f411a9e6d6a879c3cd452acf98d411dfa20488d0feab1d",
+                    "Gateway": "172.22.0.1",
+                    "IPAddress": "172.22.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:16:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]

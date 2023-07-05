@@ -1,0 +1,7 @@
+Passport is Authentication Middleware for Node.JS
+
+
+grep -r --exclude='*.json' "passport" .             // dont search .json files
+grep -r --include='*.js' "passport" .               // only search .js files
+
+grep -r --exclude='*.json' --exclude-dir='node_modules' "passport" .

@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+  node23:
+    restart: on-failure
+    build: .                # . means, it takes Dockerfile present in currentPath
+    depends_on:
+      - postgres
+    # environment:
+    #   DATABASE_URL: postgres://user44:1258@postgres:5432/db87
+    #   NODE_ENV: development
+    ports:
+      - "18090:18090"
+    command: npm run dev
+
+  postgres:
+    image: postgres
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: user44
+      
+      # if you use this ---> db password will be "/run/secrets/passwd23"
+      # POSTGRES_PASSWORD: /run/secrets/passwd23
+
+      # give passwords from a file
+      # POSTGRES_PASSWORD_FILE: /run/secrets/passwd23
+
+      # use default password
+      POSTGRES_PASSWORD: 1258
+      # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
+
+      POSTGRES_DB: db87
+    volumes:
+      - ~/Desktop/docker23/dockervol23/pgDataLevel2:/var/lib/postgresql/data
+    secrets:
+      - passwd23
+
+secrets:
+  passwd23:
+    file: secret23.txt

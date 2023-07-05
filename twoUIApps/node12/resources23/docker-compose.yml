@@ -1,0 +1,81 @@
+services:
+
+# POSTGRES setup as database
+  postgres:
+    image: postgres
+    container_name: postgres23
+    mem_limit: 1000m
+    mem_reservation: 512m
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1258
+      # POSTGRES_DB: football
+      # PGDATA: /pgData23
+    ports:
+      - 59001:5432
+    restart: always
+    volumes:
+      - /home/gsakshi/Desktop/docker23/dockervol23/postgres_data2:/var/lib/postgresql/data
+
+# MONGO DB
+  mongodb:
+    image: mongo
+    container_name: mongo23
+    ports:
+      - '59002:27017'
+    restart: always
+    volumes:
+      - /home/gsakshi/Desktop/docker23/dockervol23/mongodb:/data/db
+  # Connect to mongoShell
+    # docker exec -it 326db5dc9fb2 bash
+    # mongosh
+    # show dbs
+
+
+# DYNAMODB setup as database
+  # amazon/dynamodb-local ===> uses "in-memory dynamodb" (default value) ===> so, data is not persisted
+  # see docker_inspect_dynamodb23.json... so, override by providing command property
+  dynamodb:
+    image: amazon/dynamodb-local
+    container_name: dynamodb23
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /dynamodb_local_db
+    mem_limit: 1000m
+    mem_reservation: 512m
+    ports:
+      - 49003:8000
+    restart: always             # we use restart:always (otherwise, have to use init jobs)
+    volumes:
+      - ~/dockervol23/dynamodb:/dynamodb_local_db
+
+
+# NGINX
+  nginx:
+    image: nginx
+    container_name: nginx
+    mem_limit: 1000m
+    mem_reservation: 512m
+    ports:
+      - 49005:80
+    restart: always
+    volumes:
+      # - ~/dockervol23/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ~/dockervol23/apps23:/home/ui-apps
+
+# RABBITMQ
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq23
+    hostname: "rabbit33"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNQGEM"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "1258"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "49007:5672"
+      - "49008:15672"
+    restart: always
+    volumes:
+      - ~/dockervol23/rabbitmq:/var/lib/rabbitmq
+      # - ~/dockervol23/rabbitmqLogs:/var/log/rabbitmq
+      # - ~/dockervol23/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf

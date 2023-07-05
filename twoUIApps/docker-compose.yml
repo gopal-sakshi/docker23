@@ -1,0 +1,33 @@
+services:
+
+# docker-compose.yml ====> configure nginx 
+  # ===> to serve two Angular APPs
+  # ===> run nodeJs backed API
+  # all on single host ===> no more CORS errors
+  # that ip will be localhost (or) 10.0.54.240
+
+# NGINX
+  nginx:
+    image: nginx
+    container_name: nginx23
+    ports:
+      - 42457:6001
+      - 42458:6002
+    restart: always
+    volumes:
+      - /home/gsakshi/Desktop/docker23/twoUIApps/dockerUI13/demo33:/demo44
+      - /home/gsakshi/Desktop/docker23/twoUIApps/node12/config23/nginx_kpt.conf:/etc/nginx/nginx.conf
+
+  node23:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./node12/node14.dockerfile
+    depends_on:
+      - postgres
+    # environment:
+    #   DATABASE_URL: postgres://user44:1258@postgres:5432/db87
+    #   NODE_ENV: development
+    ports:
+      - "42060:42060"
+    # command: npm run dev40
