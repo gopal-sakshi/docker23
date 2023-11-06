@@ -11,7 +11,7 @@ services:
     image: nginx
     container_name: nginx23
     ports:
-      - 42457:6001
+      - 42457:6001    # so, on the host machine, I'll listen on 42457 & 42458 ports
       - 42458:6002
     restart: always
     volumes:
@@ -23,6 +23,20 @@ services:
     build:
       context: .
       dockerfile: ./node12/node14.dockerfile
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: 10m
+    #     max-file: "3"
+    #     labels: "label23"
+    #     env: "os23"
+
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     syslog-address: "tcp://:601"
+    #     syslog-format: "rfc3164"
+    #     tag: "node23_logs"
     depends_on:
       - postgres
     # environment:
@@ -31,3 +45,30 @@ services:
     ports:
       - "42060:42060"
     # command: npm run dev40
+
+  postgres44:
+    image: postgres
+    ports:
+      - "35432:5432"
+    environment:
+      POSTGRES_USER: user44
+      
+      # if you use this ---> db password will be "/run/secrets/passwd23"
+      # POSTGRES_PASSWORD: /run/secrets/passwd23
+
+      # give passwords from a file
+      # POSTGRES_PASSWORD_FILE: /run/secrets/passwd23
+
+      # use default password
+      POSTGRES_PASSWORD: 1258
+      # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
+
+      POSTGRES_DB: db87
+    volumes:
+      - ~/Desktop/docker23/dockervol23/pgDataLevel2:/var/lib/postgresql/data
+    secrets:
+      - passwd23
+
+secrets:
+  passwd23:
+    file: secret23.txt

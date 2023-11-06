@@ -24,6 +24,20 @@ app.use('/query1', async (req, res) => {
     res.send(now.rows);
 });
 
+// To connect to postgres database
+    // open postgres container ====> psql -U user44 -d db87
+    // "\list"  (or) "\dt"
+
+app.use('/listTables', async(req, res) => {
+    const pool = new Pool(credentials);
+    const sqlQuery1 = `select table_schema||'.'||table_name as table_fullname
+        from information_schema."tables"
+        where table_type = 'BASE TABLE'
+        and table_schema not in ('pg_catalog', 'information_schema');`    
+    const now = await pool.query(sqlQuery1);
+    res.send(now.rows);
+})
+
 app.use('/query2', async (req, res) => {
     const pool = new Pool(credentials);    
     const now = await pool.query("SELECT * FROM MARKS;");

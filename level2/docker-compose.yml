@@ -2,6 +2,7 @@ version: "3"
 
 services:
 
+  ####### if we are using 'Dockerfile' and building image ################
   node23:
     restart: on-failure
     build: .                # . means, it takes Dockerfile present in currentPath
@@ -13,6 +14,19 @@ services:
     ports:
       - "18090:18090"
     command: npm run dev
+
+  ########### if we are using image from hub.docker.com #########################
+  # node23:
+  #   restart: on-failure
+  #   image: gopal612/level2b:v1
+  #   depends_on:
+  #     - postgres
+  #   # environment:
+  #   #   DATABASE_URL: postgres://user44:1258@postgres:5432/db87
+  #   #   NODE_ENV: development
+  #   ports:
+  #     - "18090:18090"
+  #   command: npm run dev
 
   postgres:
     image: postgres

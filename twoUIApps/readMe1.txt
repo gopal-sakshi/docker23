@@ -12,7 +12,7 @@ bcoz, these UI apps can be accessed in either way
     10.0.54.240:54321
 -------------------------------------------------------------------------
 
-I have nginx.conf
+I have nginx.conf (see node12 folder)
 It listens on two ports ---> 6001, 6002
     6001 port serves whatever is on ----> http://10.0.54.240:54321; (which is UI app - dockerUI12)
     6002 port serves whatever is on ----> http://10.0.54.240:54322; (which is UI app - dockerUI13)
@@ -25,4 +25,9 @@ this docker container maps two ports --> 42457 & 42458
     so, if you access localhost:42457 ----->
         it connects to nginxDockerContainer's port 6001
         which connects to dockerUI12 app
+
+    http://10.0.54.240:42458/
+    localhost:42458                     // both of the works
+
+    http://10.0.54.240:54322/           // WiLL NoT wOrK
 -------------------------------------------------------------------------
