@@ -31,12 +31,13 @@ services:
     #     labels: "label23"
     #     env: "os23"
 
-    # logging:
-    #   driver: syslog
-    #   options:
-    #     syslog-address: "tcp://:601"
-    #     syslog-format: "rfc3164"
-    #     tag: "node23_logs"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://localhost:50000"
+        syslog-format: "rfc3164"
+        tag: "node23_logs"
+  
     depends_on:
       - postgres
     # environment:

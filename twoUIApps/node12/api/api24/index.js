@@ -15,6 +15,7 @@ const credentials = {
 /*********************************************************/
 app.use('/getData24A', (req, res) => {
     const players = ["Benz", "Luka", "Kroos"];
+    console.log('players ==========> ', players);
     res.send(players);
 });
 
@@ -25,8 +26,11 @@ app.use('/query1', async (req, res) => {
 });
 
 app.use('/query2', async (req, res) => {
-    const pool = new Pool(credentials);    
-    const now = await pool.query("SELECT * FROM MARKS;");
+    const pool = new Pool(credentials);
+    req.body = req.body ? req.body : {};
+    const query = req.body.query ? req.body.query : 'SELECT * FROM MARKS'
+    console.log('query ====> ',query)
+    const now = await pool.query(query);
     res.send(now.rows);
 });
 /*********************************************************/

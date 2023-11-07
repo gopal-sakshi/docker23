@@ -1,0 +1,16 @@
+syntax for a grok pattern ====>      %{SYNTAX:SEMANTIC}
+
+SYNTAX      = name of the pattern
+SEMANTIC    = identifier (duration23 (or) clientIp)
+
+3.44            will be matched by the NUMBER pattern 
+55.3.244.1      will be matched by the IP pattern
+
+
+above GROK filter
+%{NUMBER:duration} %{IP:client}
+
+
+55.3.244.1 GET /index.html 15824 0.043
+%{IP:client} %{WORD:method} %{URIPATHPARAM:request} %{NUMBER:bytes} %{NUMBER:duration}
+

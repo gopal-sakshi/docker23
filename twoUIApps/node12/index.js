@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 
-app.listen(42060, () => console.log('hammayya, listening on 42060'));
+app.listen(42060, () => console.log('hammayya, 42060 lo choosko'));
 
 app.use('/api23', require('./api/api23'));
 app.use('/api24', require('./api/api24'));
@@ -15,7 +15,7 @@ app.use('/api24', require('./api/api24'));
 
 
 app.use('/', (req, res) => {
-    // this ROUTE must always be the last... think about it
+    // console.log('base path bit chesaav babai');
     res.send({
         info: 'you have hit base path;',
         path1: 'use /api23/getData23A',

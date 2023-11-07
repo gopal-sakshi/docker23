@@ -1,0 +1,31 @@
+services:
+
+  # nginx:
+  #   image: nginx
+  #   container_name: nginxLogging23
+  #   ports:
+  #     - 18000:80
+  #   restart: always
+  #   logging:
+  #     driver: syslog
+  #     options:
+  #       syslog-address: "tcp://localhost:50000"
+  #       syslog-format: "rfc3164"
+  #       tag: "node23_logs"
+
+
+  # this is standalone logstash... without elastic search thingy
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.10.2
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro,Z
+      - ./blah1.log:/tmp/blah1.log
+    ports:
+      - 5045:5044
+      - 50002:50002/tcp
+    environment:
+      LS_JAVA_OPTS: -Xms256m -Xmx256m
+      LOGSTASH_INTERNAL_PASSWORD: 061288
+      XPACK_MONITORING_ENABLED: false     # this is stop logstash from elastic connection checking every 1 min
+                                          # https://github.com/docker-library/logstash/issues/85
+                                          # another way = xpack.monitoring.enabled: false in logstash.yml
