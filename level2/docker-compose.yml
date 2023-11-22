@@ -14,6 +14,18 @@ services:
     ports:
       - "18090:18090"
     command: npm run dev
+    logging:
+      
+      # driver: syslog
+      # options:
+      #   # syslog-address: "tcp://127.0.0.1:514"   # tcp://localhost:50000
+      #   syslog-format: "rfc3164"
+      #   tag: "node23_syslog23"
+      
+      driver: gelf
+      options:
+        gelf-address: udp://localhost:12201
+        tag: "node23_gelf23"
 
   ########### if we are using image from hub.docker.com #########################
   # node23:
@@ -28,8 +40,20 @@ services:
   #     - "18090:18090"
   #   command: npm run dev
 
-  postgres:
-    image: postgres
+  postgres45:
+    # image: postgres         # this is using postgres 14.5...
+                            # but volume directory already has some db data created with pg15
+                            # error is db files are incompatible with server
+                            # data direcotry initialized by pg15, not compatible with pg14.5
+                            # so, thats why use postgres:15
+    image: postgres:15
+                            # psql -U user44 -h 10.0.54.240 -p 35432 -d db87
+                            # "psql -U postgres -h 10.0.54.240 -p 35432" gives errors
+                                # user postgres doesnt exist, db doesnt exist
+
+                            # some collation version mismatch; i simply fixed it like - 
+                              # REBUILD DATABASE db87;
+                              # ALTER DATABASE db87 REFRESH COLLATION VERSION
     ports:
       - "35432:5432"
     environment:

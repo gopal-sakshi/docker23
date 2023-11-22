@@ -34,7 +34,9 @@ services:
     logging:
       driver: syslog
       options:
-        syslog-address: "tcp://localhost:50000"
+        # syslog-address: "tcp://localhost:50000"
+          # by default, syslog writes to /var/log/syslog file
+          # syslog-address is only needed if u need to write to external syslog server
         syslog-format: "rfc3164"
         tag: "node23_logs"
   
