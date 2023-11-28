@@ -19,7 +19,8 @@ services:
     image: docker.elastic.co/logstash/logstash:8.10.2
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro,Z
-      - ./blah1.log:/tmp/blah1.log
+      - ./bind_input23.log:/usr/share/logstash/fileInContainer.log
+      - ./bind_output23.log:/tmp/blah1.log
     ports:
       - 5045:5044
       - 50002:50002/tcp

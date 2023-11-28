@@ -1,11 +1,10 @@
 syntax for a grok pattern ====>      %{SYNTAX:SEMANTIC}
+    SYNTAX      = name of the pattern
+    SEMANTIC    = identifier (duration23 (or) clientIp)
 
-SYNTAX      = name of the pattern
-SEMANTIC    = identifier (duration23 (or) clientIp)
-
-3.44            will be matched by the NUMBER pattern 
-55.3.244.1      will be matched by the IP pattern
-
+Examples
+    3.44            will be matched by the NUMBER pattern 
+    55.3.244.1      will be matched by the IP pattern
 
 above GROK filter
 %{NUMBER:duration} %{IP:client}
@@ -14,3 +13,9 @@ above GROK filter
 55.3.244.1 GET /index.html 15824 0.043
 %{IP:client} %{WORD:method} %{URIPATHPARAM:request} %{NUMBER:bytes} %{NUMBER:duration}
 
+If pattern is not matched, logstash adds a dynamic tag "_grokparsefailure"
+==========================================================================
+
+
+2023-11-27T09:44:03.838Z bot-config using config from cache 1922c580-5985-42f1-8253-74e98038b4a7
+%{ISO8601_TIMEZONE:ts23} %{WORD:module23}
