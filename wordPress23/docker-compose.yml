@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    # restart: always
+    ports:
+      - 8944:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: user46   # login deatils ===> user46, 1258
+      WORDPRESS_DB_PASSWORD: 1258
+      WORDPRESS_DB_NAME: db877
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:5.7
+    # restart: always
+    environment:
+      MYSQL_DATABASE: db877
+      MYSQL_USER: user46
+      MYSQL_PASSWORD: 1258
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  # wordpress: /home/gsakshi/Desktop/docker23/wordPress23/wordPressData23
+  # db: /home/gsakshi/Desktop/docker23/wordPress23/mysqlData23
+  wordpress:
+  db:

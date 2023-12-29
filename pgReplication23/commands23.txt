@@ -1,0 +1,13 @@
+psql -h 10.0.54.240 -p 5481 -U postgres
+docker exec -it pgreplication23-postgres-1 /bin/bash
+psql -U postgres
+create user repl23 replication login encrypted password '1258';
+\du
+psql -U postgres -c 'SHOW config_file'
+
+
+wal_level = logical
+wal_log_hints = on
+max_wal_senders = 8
+max_wal_size = 1GB
+hot_standby = on
