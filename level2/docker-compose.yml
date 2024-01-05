@@ -4,7 +4,7 @@ services:
 
   ####### if we are using 'Dockerfile' and building image ################
   node23:
-    restart: on-failure
+    # restart: on-failure     # dont enable this... otherwise, this container starts everytime system bootsup
     build: .                # . means, it takes Dockerfile present in currentPath
     depends_on:
       - postgres
@@ -72,7 +72,7 @@ services:
 
       POSTGRES_DB: db87
     volumes:
-      - ~/Desktop/docker23/dockervol23/pgDataLevel2:/var/lib/postgresql/data
+      - ~/Desktop/repos23/others/docker23/dockervol23/pgDataLevel2:/var/lib/postgresql/data
     secrets:
       - passwd23
 
