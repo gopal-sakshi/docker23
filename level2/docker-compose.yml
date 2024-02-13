@@ -2,80 +2,51 @@ version: "3"
 
 services:
 
-  ####### if we are using 'Dockerfile' and building image ################
   node23:
-    # restart: on-failure     # dont enable this... otherwise, this container starts everytime system bootsup
-    build: .                # . means, it takes Dockerfile present in currentPath
+    build: .                            # . means, it takes Dockerfile present in currentPath
+    # image: gopal612/level2b:v1        # use either build (oR) image only one of them
     depends_on:
       - postgres
-    # environment:
-    #   DATABASE_URL: postgres://user44:1258@postgres:5432/db87
-    #   NODE_ENV: development
     ports:
       - "18090:18090"
-      - "12201:12201"
+      # - "12201:12201/udp"
     command: npm run dev
+
     logging:
-      
-      # driver: syslog
-      # options:
-      #   # syslog-address: "tcp://127.0.0.1:514"   # tcp://localhost:50000
-      #   syslog-format: "rfc3164"
-      #   tag: "node23_syslog23"
-      
-      driver: gelf
+      driver: "json-file"
       options:
-        gelf-address: udp://127.0.0.1:12201
-        tag: "node23_gelf23"
+        max-file: "5"
+        max-size: "1k" 
+    # logging:
+    #   driver: gelf
+    #   options:
+    #     # gelf-address: udp://127.0.0.1:12201
+    #     gelf-address: docker.host.internal:12201
+    #     tag: "node23_gelf23"
+    #     gelf-compression-type: none
 
-  ########### if we are using image from hub.docker.com #########################
-  # node23:
-  #   restart: on-failure
-  #   image: gopal612/level2b:v1
-  #   depends_on:
-  #     - postgres
-  #   # environment:
-  #   #   DATABASE_URL: postgres://user44:1258@postgres:5432/db87
-  #   #   NODE_ENV: development
+  # postgres45:       # why its not working with postgres45, but why its working with postgres46
+  #   image: postgres:15
+  #     # collation version mismatch ===>  # REBUILD DATABASE db87; # ALTER DATABASE db87 REFRESH COLLATION VERSION;
   #   ports:
-  #     - "18090:18090"
-  #   command: npm run dev
-
-  postgres45:
-    # image: postgres         # this is using postgres 14.5...
-                            # but volume directory already has some db data created with pg15
-                            # error is db files are incompatible with server
-                            # data direcotry initialized by pg15, not compatible with pg14.5
-                            # so, thats why use postgres:15
-    image: postgres:15
-                            # psql -U user44 -h 10.0.54.240 -p 35432 -d db87
-                            # "psql -U postgres -h 10.0.54.240 -p 35432" gives errors
-                                # user postgres doesnt exist, db doesnt exist
-
-                            # some collation version mismatch; i simply fixed it like - 
-                              # REBUILD DATABASE db87;
-                              # ALTER DATABASE db87 REFRESH COLLATION VERSION
-    ports:
-      - "35432:5432"
-    environment:
-      POSTGRES_USER: user44
-      
-      # if you use this ---> db password will be "/run/secrets/passwd23"
-      # POSTGRES_PASSWORD: /run/secrets/passwd23
-
-      # give passwords from a file
-      # POSTGRES_PASSWORD_FILE: /run/secrets/passwd23
-
-      # use default password
-      POSTGRES_PASSWORD: 1258
-      # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
-
-      POSTGRES_DB: db87
-    volumes:
-      - ~/Desktop/repos23/others/docker23/dockervol23/pgDataLevel2:/var/lib/postgresql/data
-    secrets:
-      - passwd23
+  #     - "35432:5432"
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     # POSTGRES_PASSWORD: /run/secrets/passwd23          # db password will be a string === "/run/secrets/passwd23"
+  #     # POSTGRES_PASSWORD_FILE: /run/secrets/passwd23
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: postgres
+  #   # volumes:
+  #   #   - /var/lib/postgresql/data
+  #   secrets:
+  #     - passwd23
 
 secrets:
   passwd23:
     file: secret23.txt
+# volumes:
+#   america23:
+#     driver: local
+#     driver_opts:
+#       o: bind
+#       device: $PWD

@@ -5,7 +5,7 @@ COPY ./package.json .
 RUN npm cache clean --force
 RUN npm install
 COPY . .
-
+# ENTRYPOINT ["whoami"]
 # stackoverflow.com/questions/22111060/what-is-the-difference-between-expose-and-publish-in-docker
     # see tgogos answer
     # EXPOSE    = simply documenting... not much use
@@ -14,7 +14,7 @@ COPY . .
 # EXPOSE 42060
 
 # CMD npm start
-CMD [ "node", "index.js" ]
+# CMD [ "node", "index.js" ]        # either use CMD (or) use command in docker-compose... command takes precedence
 
 
 # docker build -t level2a . 
@@ -30,3 +30,10 @@ CMD [ "node", "index.js" ]
     # docker login
     # docker image push gopal612/level2b            // FAILS; because there is no 'latest' tag image
     # docker image push gopal612/level2b:v1         // WORKS
+
+
+# CMD vs ENTRYPOINT
+# - both commands are executed during docker run
+# - CMD is ignored if you specify parameters within docker run command
+# - ENTRYPOINT is not ignored
+# - https://refine.dev/blog/docker-entrypoint/
