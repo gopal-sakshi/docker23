@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+
+  postgres45:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1258
+    volumes:
+      - ./pgData23:/var/lib/postgresql/data
+
+  pgadmin23:
+    image: dpage/pgadmin4
+    # container_name: pgadmin23
+    environment:
+      PGADMIN_DEFAULT_EMAIL: gopal612@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1258
+      PGGADMIN_LISTEN_PORT: 82
+      # sudo chown -R 5050:5050 pgAdminData23/
+    ports:
+      - "82:80"
+    volumes:
+      - ./pgAdminData23:/var/lib/pgadmin
+
+  mongo23:
+    image: mongo
+    # container_name: mongo23         # dont give container name... bcoz recreating it will throw problems
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo23:/data/db
+
+  # nginx23:
+  #   image: nginx
+  #   ports: 80:80
+  #   ###### https://nickjanetakis.com/blog/why-i-prefer-running-nginx-on-my-docker-host-instead-of-in-a-container
+  #   ###### nginx should be run on host... instead of docker container
+
+
+  gitea23:
+    image: gitea/gitea:1.16.5
+    # container_name: giteaServer23
+    environment: 
+      - USER_UID=130
+      - USER_GID=137
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=pgGitea:5432
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+    networks:
+      - giteaNet23
+    volumes:
+      - ./gitea23:/data
+      - /home/git/.ssh/:/data/git/.ssh
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "127.0.0.1:30000:3000"
+      - "127.0.0.1:2222:22"
+
+  pgGitea:    ## attach shell; "psql -U gitea"
+    image: postgres:14
+    ports:
+      - "25432:5432"
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    networks:
+      - giteaNet23
+    volumes:
+    - ./pgGitea:/var/lib/postgresql/data
+
+
+  redis23:
+    image: redis:6.2-alpine
+    # restart: always
+    ports:
+      - '6379:6379'
+    volumes: 
+      - redisVol23:/data
+
+  jenkins:
+    container_name: jenkins24
+    image: jenkins/jenkins:lts
+    ports:
+      - "18080:8080"        ### login credentials ---> gopal, 1258
+    privileged: true
+    user: root
+    volumes:
+      - ./jenkinsData24:/var/jenkins_home
+
+networks:
+  giteaNet23:
+    external: false
+
+volumes:
+  redisVol23:
+    driver: local   # data will be persisted... 

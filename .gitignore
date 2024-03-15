@@ -5,3 +5,10 @@ logstashThingy/blah1.json
 logstashThingy/blah1.log
 
 Jenkins23/jenkinsData*
+
+containers23/mongo23
+containers23/pgAdminData23
+containers23/pgData23
+containers23/jenkinsData24
+containers23/gitea23
+containers23/pgGitea
