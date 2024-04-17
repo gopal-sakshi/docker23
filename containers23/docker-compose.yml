@@ -1,6 +1,20 @@
-version: '3.8'
+# version: '3.8'      ### version is obsolete
 
 services:
+
+  mysql23:
+    image: mysql:8.3.0
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: '1258'
+      MYSQL_ROOT_PASSWORD: '1258'
+    ports:
+      - '13306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - /var/lib/mysql
 
   postgres45:
     image: postgres:15
