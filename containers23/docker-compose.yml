@@ -98,6 +98,13 @@ services:
     volumes: 
       - redisVol23:/data
 
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - '5540:5540'
+    volumes:
+      - /data
+
   jenkins:
     container_name: jenkins24
     image: jenkins/jenkins:lts
