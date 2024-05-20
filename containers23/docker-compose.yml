@@ -98,6 +98,13 @@ services:
     volumes: 
       - redisVol23:/data
 
+  redisstack23:
+    image: redis/redis-stack:latest
+    ports:
+      - '6379:6379'
+    volumes:
+      - /data
+
   redisinsight:
     image: redislabs/redisinsight:latest
     ports:
