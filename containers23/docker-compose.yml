@@ -90,13 +90,13 @@ services:
     - ./pgGitea:/var/lib/postgresql/data
 
 
-  redis23:
-    image: redis:6.2-alpine
-    # restart: always
-    ports:
-      - '6379:6379'
-    volumes: 
-      - redisVol23:/data
+  # redis23:
+  #   image: redis:6.2-alpine
+  #   # restart: always
+  #   ports:
+  #     - '6379:6379'
+  #   volumes: 
+  #     - redisVol23:/data
 
   redisstack23:
     image: redis/redis-stack:latest
@@ -121,6 +121,22 @@ services:
     user: root
     volumes:
       - ./jenkinsData24:/var/jenkins_home
+
+  grafana:
+    image: grafana/grafana-enterprise
+    user: '1001'        # if you are running as root then set it to 0 else find the right id with the id -u command
+    ### default login --> admin, admin ===> new password ===> 06xxx8
+    ports:
+      - '30012:3000'
+    volumes:
+      - /var/lib/grafana'
+
+  prometheus23:
+    image: prom/prometheus
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+      - 19090:9090
 
 networks:
   giteaNet23:
