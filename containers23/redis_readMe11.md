@@ -26,3 +26,27 @@ Redis Stack
     RediSearch
     RedisTimeSeries
     RedisBloom.
+
+========================================================
+
+`Persistence`
+- If nothing is specified (default settings)
+    redis image ============> data is persisted if volume/bind_mount directory is provided
+    redis-stack image ======> data is lost every time docker container is restarted
+
+- for redis
+    command: ["redis-server", "--save", "3600", "1", "300", "100", "60", "10000"]
+    to override/modify default settings provide here
+
+- for redis-stack
+    environment: 
+    - REDIS_ARGS = --save 3600 1 300 100 60 10000
+    <!-- Save after 3600sec if 1 write, 
+        after 300sec if 100 writes, 
+        after 60 sec if 10000 writes 
+    -->
+- (or) alternatively you can specify redis.conf file
+- to see the present save settings ===> CONFIG GET save
+
+see redis23_node/resources/persistence23.md for more details
+https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/docker/

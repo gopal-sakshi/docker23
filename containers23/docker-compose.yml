@@ -1,5 +1,5 @@
 # version: '3.8'      ### version is obsolete
-
+#### START ONLY SOME CONTAINERS ---> $ docker-compose up -d rabbitMq23
 services:
 
   mysql23:
@@ -89,9 +89,26 @@ services:
     volumes:
     - ./pgGitea:/var/lib/postgresql/data
 
+  rabbitMq23:
+    image: rabbitmq:3
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      # - RABBITMQ_USER: rabbitmq   ### didnt work
+      # - RABBITMQ_PASSWORD: 1258
+
+      - "RABBITMQ_DEFAULT_USER=rabbitmq" 
+      - "RABBITMQ_DEFAULT_PASS=1258"
+
+    volumes:
+      - /var/lib/rabbitmq/
+      - /var/log/rabbitmq/
+    
 
   # redis23:
   #   image: redis:6.2-alpine
+  #   # command: ["redis-server", "--save", "3600", "1", "300", "100", "60", "10000"]
   #   # restart: always
   #   ports:
   #     - '6379:6379'
@@ -100,6 +117,8 @@ services:
 
   redisstack23:
     image: redis/redis-stack:latest
+    environment: 
+      REDIS_ARGS: --appendonly yes
     ports:
       - '6379:6379'
     volumes:
