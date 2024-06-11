@@ -90,10 +90,11 @@ services:
     - ./pgGitea:/var/lib/postgresql/data
 
   rabbitMq23:
-    image: rabbitmq:3
+    # image: rabbitmq:3     ### plain image; no admin UI ()
+    image: rabbitmq:3-management
     ports:
       - "5672:5672"
-      - "15672:15672"
+      - "15672:15672"       ### open localhost:15672    for admin/management UI
     environment:
       # - RABBITMQ_USER: rabbitmq   ### didnt work
       # - RABBITMQ_PASSWORD: 1258
