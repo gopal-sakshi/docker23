@@ -14,3 +14,5 @@ containers23/gitea23
 containers23/pgGitea
 
 containers24/shared-local-instance.db
+
+containers25/pg*
