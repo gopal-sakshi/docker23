@@ -12,3 +12,5 @@ containers23/pgData23
 containers23/jenkinsData24
 containers23/gitea23
 containers23/pgGitea
+
+containers24/shared-local-instance.db

@@ -5,7 +5,7 @@ const { Pool } = require('pg');
 
 const credentials = { 
     user: "user44",
-    host: "postgres44",         // use containerName
+    host: "postgres44",         // not containerName, use serviceName; it seems postgres44 is serviceName
     // host: "127.0.0.1",       // this is wrong... it means loopback adapter, connect to myself
     database: "db87",
     password: "1258",

@@ -1,0 +1,14 @@
+services:
+
+  dynamodbKlgdi23:
+    image: amazon/dynamodb-local
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /dynamodb_local_db23
+    mem_limit: 1000m
+    mem_reservation: 512m
+    user: root
+    ports:
+      - 49003:8000
+    volumes:
+      - ./dbPath23:/dynamodb_local_db23
+
+  # minio
