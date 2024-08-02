@@ -4,7 +4,7 @@ mysql --host=localhost --user=user --password=1258 db
 show databases;             <!-- show list of databases -->
 use db23;                   <!-- use db23 -->
 select database();          <!-- to know the curent db -->
-show tables();
+show tables();  (or)    show tables;        <!-- varies based on MySQL version -->
 select * from realmadrid11;
 quit
 
@@ -25,3 +25,22 @@ VALUES
 ('kroos', 'midfielder', 'germany'),
 ('ramos', 'Defender', 'spain');
 ```
+
+
+docker cp Desktop/world.sql containers23-mysql23-1:/tmp/
+
+mysql --user=user --password=1258       <!-- running into permissions issue -->
+mysql -u root -p                        <!-- try this, password = 1258 -->
+    show databases();
+    use mysql;
+    select user from mysql.user;
+clear screen        Ctrl + L
+
+
+create database world23;            <!-- create database for dao in simpleExpressTypescript -->
+
+<!-- pg_dump that MySQL can understand -->
+pg_dump -U postgres -h localhost -d world23 --data-only --no-owner --no-acl --attribute-inserts --disable-dollar-quoting --no-tablespaces > world23_ss.sql
+
+world23     ==> contains wrong info (or) wrong db structure... 
+world24     ===> USE THIS
