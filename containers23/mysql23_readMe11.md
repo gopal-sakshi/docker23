@@ -42,5 +42,12 @@ create database world23;            <!-- create database for dao in simpleExpres
 <!-- pg_dump that MySQL can understand -->
 pg_dump -U postgres -h localhost -d world23 --data-only --no-owner --no-acl --attribute-inserts --disable-dollar-quoting --no-tablespaces > world23_ss.sql
 
-world23     ==> contains wrong info (or) wrong db structure... 
-world24     ===> USE THIS
+
+mysql -u root -p world23 < file23.sql
+
+
+<!-- --------------------------------------------------------------------- -------->
+
+
+UPDATE cities SET name=concat(name,'__mysql23') WHERE state_id = 4028 and country_id = 101;
+<!-- --------------------------------------------------------------------- -------->

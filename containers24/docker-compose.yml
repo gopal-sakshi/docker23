@@ -1,14 +1,17 @@
 services:
 
-  dynamodbKlgdi23:
+  dynamodbLocal23:
     image: amazon/dynamodb-local
-    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /dynamodb_local_db23
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /tmp"
     mem_limit: 1000m
     mem_reservation: 512m
     user: root
     ports:
       - 49003:8000
-    volumes:
-      - ./dbPath23:/dynamodb_local_db23
+    # volumes:
+    #   - ./dbPath23:/home/dynamodblocal
 
   # minio
+
+
+# docker run -p 8001:8001 -v $DATA_DIRECTORY:/home/dynamodblocal amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb -dbPath . -cors http://localhost:5173,http://localhost:3000

@@ -13,6 +13,6 @@ containers23/jenkinsData24
 containers23/gitea23
 containers23/pgGitea
 
-containers24/shared-local-instance.db
+containers24/dbPath23/shared-local-instance.db
 
 containers25/pg*
